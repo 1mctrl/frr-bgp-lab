@@ -1,0 +1,54 @@
+
+services:
+  r1:
+    image: quay.io/frrouting/frr:10.5.4
+    container_name: frr-r1
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    volumes:
+      - ./r1/daemons:/etc/frr/daemons
+      - ./r1/frr.conf:/etc/frr/frr.conf
+      - ./r1/vtysh.conf:/etc/frr/vtysh.conf
+    networks:
+      - net12
+      - net13
+
+  r2:
+    image: quay.io/frrouting/frr:10.5.4
+    container_name: frr-r2
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    volumes:
+      - ./r2/daemons:/etc/frr/daemons
+      - ./r2/frr.conf:/etc/frr/frr.conf
+      - ./r2/vtysh.conf:/etc/frr/vtysh.conf
+    networks:
+      - net12
+      - net23
+
+  r3:
+    image: quay.io/frrouting/frr:10.5.4
+    container_name: frr-r3
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    volumes:
+      - ./r3/daemons:/etc/frr/daemons
+      - ./r3/frr.conf:/etc/frr/frr.conf
+      - ./r3/vtysh.conf:/etc/frr/vtysh.conf
+    networks:
+      - net13
+      - net23
+
+networks:
+  net12:
+    driver: bridge
+  net13:
+    driver: bridge
+  net23:
+    driver: bridge
