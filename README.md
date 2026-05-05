@@ -132,3 +132,4 @@ C>* 172.23.0.0/16 is directly connected, eth0, weight 1, 00:05:10
 L>* 172.23.0.2/32 is directly connected, eth0, weight 1, 00:05:10
 8ddeecd49a05# exit
 ```
+<img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/77531353-6d95-4f4a-a677-75e141e8faea" />
