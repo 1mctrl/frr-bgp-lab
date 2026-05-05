@@ -42,7 +42,7 @@ C>* 172.23.0.0/16 is directly connected, eth1, weight 1, 00:04:35
 L>* 172.23.0.3/32 is directly connected, eth1, weight 1, 00:04:35
 1ee7872193eb# exit
 ```
-
+//////////////////////
 ```
   bsh icon dockerLab  frr + 
    docker exec -it frr-r2 vtysh
@@ -87,7 +87,7 @@ C>* 172.22.0.0/16 is directly connected, eth1, weight 1, 00:04:58
 L>* 172.22.0.2/32 is directly connected, eth1, weight 1, 00:04:58
 71944d37f27d# exit
 ```
-
+/////////////////////
 ```
   bsh icon dockerLab  frr + 
    docker exec -it frr-r3 vtysh
@@ -132,4 +132,230 @@ C>* 172.23.0.0/16 is directly connected, eth0, weight 1, 00:05:10
 L>* 172.23.0.2/32 is directly connected, eth0, weight 1, 00:05:10
 8ddeecd49a05# exit
 ```
-<img width="1920" height="1003" alt="image" src="https://github.com/user-attachments/assets/77531353-6d95-4f4a-a677-75e141e8faea" />
+///////////////
+```
+  bsh icon dockerLab  frr ! 
+   docker exec -it frr-r1 vtysh -c "show bfd peers"
+BFD Peers:
+	peer 10.0.13.2 local-address 10.0.13.1 vrf default interface eth1
+		ID: 1710920213
+		Remote ID: 808669828
+		Active mode
+		Status: up
+		Uptime: 7 second(s)
+		Diagnostics: ok
+		Remote diagnostics: ok
+		Peer Type: dynamic
+		RTT min/avg/max: 0/0/0 usec
+		Local timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+			Echo transmission interval: disabled
+		Remote timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+
+	peer 10.0.12.2 local-address 10.0.12.1 vrf default interface eth0
+		ID: 808669828
+		Remote ID: 808669828
+		Active mode
+		Status: up
+		Uptime: 7 second(s)
+		Diagnostics: ok
+		Remote diagnostics: ok
+		Peer Type: dynamic
+		RTT min/avg/max: 0/0/0 usec
+		Local timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+			Echo transmission interval: disabled
+		Remote timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+
+
+  bsh icon dockerLab  frr ! 
+   docker exec -it frr-r1 vtysh -c "show bfd peers counters"
+BFD Peers:
+	peer 10.0.13.2 local-address 10.0.13.1 vrf default interface eth1
+		ID: 1710920213
+		Control packet input: 52 packets
+		Control packet output: 52 packets
+		Echo packet input: 0 packets
+		Echo packet output: 0 packets
+		Session up events: 1
+		Session down events: 0
+		Zebra notifications: 2
+		Tx fail packet: 0
+
+	peer 10.0.12.2 local-address 10.0.12.1 vrf default interface eth0
+		ID: 808669828
+		Control packet input: 52 packets
+		Control packet output: 52 packets
+		Echo packet input: 0 packets
+		Echo packet output: 0 packets
+		Session up events: 1
+		Session down events: 0
+		Zebra notifications: 2
+		Tx fail packet: 0
+```
+///////////////
+```
+  bsh icon dockerLab  frr ! 
+   docker exec -it frr-r2 vtysh -c "show bfd peers"
+BFD Peers:
+	peer 10.0.23.3 local-address 10.0.23.2 vrf default interface eth1
+		ID: 1710920213
+		Remote ID: 1710920213
+		Active mode
+		Status: up
+		Uptime: 26 second(s)
+		Diagnostics: ok
+		Remote diagnostics: ok
+		Peer Type: dynamic
+		RTT min/avg/max: 0/0/0 usec
+		Local timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+			Echo transmission interval: disabled
+		Remote timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+
+	peer 10.0.12.1 local-address 10.0.12.2 vrf default interface eth0
+		ID: 808669828
+		Remote ID: 808669828
+		Active mode
+		Status: up
+		Uptime: 26 second(s)
+		Diagnostics: ok
+		Remote diagnostics: ok
+		Peer Type: dynamic
+		RTT min/avg/max: 0/0/0 usec
+		Local timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+			Echo transmission interval: disabled
+		Remote timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+
+
+  bsh icon dockerLab  frr ! 
+   docker exec -it frr-r2 vtysh -c "show bfd peers counters"
+BFD Peers:
+	peer 10.0.23.3 local-address 10.0.23.2 vrf default interface eth1
+		ID: 1710920213
+		Control packet input: 130 packets
+		Control packet output: 130 packets
+		Echo packet input: 0 packets
+		Echo packet output: 0 packets
+		Session up events: 1
+		Session down events: 0
+		Zebra notifications: 2
+		Tx fail packet: 0
+
+	peer 10.0.12.1 local-address 10.0.12.2 vrf default interface eth0
+		ID: 808669828
+		Control packet input: 130 packets
+		Control packet output: 129 packets
+		Echo packet input: 0 packets
+		Echo packet output: 0 packets
+		Session up events: 1
+		Session down events: 0
+		Zebra notifications: 2
+		Tx fail packet: 0
+```
+
+//////////
+
+```
+  bsh icon dockerLab  frr ! 
+   docker exec -it frr-r3 vtysh -c "show bfd peers"
+BFD Peers:
+	peer 10.0.23.2 local-address 10.0.23.3 vrf default interface eth1
+		ID: 1710920213
+		Remote ID: 1710920213
+		Active mode
+		Status: up
+		Uptime: 37 second(s)
+		Diagnostics: ok
+		Remote diagnostics: ok
+		Peer Type: dynamic
+		RTT min/avg/max: 0/0/0 usec
+		Local timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+			Echo transmission interval: disabled
+		Remote timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+
+	peer 10.0.13.1 local-address 10.0.13.2 vrf default interface eth0
+		ID: 808669828
+		Remote ID: 1710920213
+		Active mode
+		Status: up
+		Uptime: 37 second(s)
+		Diagnostics: ok
+		Remote diagnostics: ok
+		Peer Type: dynamic
+		RTT min/avg/max: 0/0/0 usec
+		Local timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+			Echo transmission interval: disabled
+		Remote timers:
+			Detect-multiplier: 3
+			Receive interval: 300ms
+			Transmission interval: 300ms
+			Echo receive interval: 50ms
+
+
+  bsh icon dockerLab  frr ! 
+   docker exec -it frr-r3 vtysh -c "show bfd peers counters"
+BFD Peers:
+	peer 10.0.23.2 local-address 10.0.23.3 vrf default interface eth1
+		ID: 1710920213
+		Control packet input: 164 packets
+		Control packet output: 162 packets
+		Echo packet input: 0 packets
+		Echo packet output: 0 packets
+		Session up events: 1
+		Session down events: 0
+		Zebra notifications: 2
+		Tx fail packet: 0
+
+	peer 10.0.13.1 local-address 10.0.13.2 vrf default interface eth0
+		ID: 808669828
+		Control packet input: 163 packets
+		Control packet output: 163 packets
+		Echo packet input: 0 packets
+		Echo packet output: 0 packets
+		Session up events: 1
+		Session down events: 0
+		Zebra notifications: 2
+		Tx fail packet: 0```
+```
