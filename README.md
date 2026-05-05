@@ -359,3 +359,5 @@ BFD Peers:
 		Zebra notifications: 2
 		Tx fail packet: 0```
 ```
+
+<img width="1091" height="1002" alt="image" src="https://github.com/user-attachments/assets/11be5f94-62c6-42c0-a4c5-9c1e3208c090" />
