@@ -14,6 +14,12 @@ services:
     networks:
       - net12
       - net13
+    command: >-
+      sh -c "/usr/lib/frr/docker-start &
+             sleep 10 &&
+             ping -i 5 2.2.2.2 &
+             ping -i 5 3.3.3.3 &
+             wait"
 
   r2:
     image: quay.io/frrouting/frr:10.5.4
@@ -29,6 +35,12 @@ services:
     networks:
       - net12
       - net23
+    command: >-
+      sh -c "/usr/lib/frr/docker-start &
+             sleep 10 &&
+             ping -i 5 1.1.1.1 &
+             ping -i 5 3.3.3.3 &
+             wait"
 
   r3:
     image: quay.io/frrouting/frr:10.5.4
@@ -44,6 +56,12 @@ services:
     networks:
       - net13
       - net23
+    command: >-
+      sh -c "/usr/lib/frr/docker-start &
+             sleep 10 &&
+             ping -i 5 1.1.1.1 &
+             ping -i 5 1.1.1.1 &
+             wait"
 
 networks:
   net12:
