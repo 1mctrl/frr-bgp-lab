@@ -1,0 +1,13 @@
+- name: Start lab
+  run: docker compose up -d
+
+- name: Wait for BGP convergence
+  run: sleep 15
+
+- name: Check BGP sessions
+  run: |
+    docker exec frr-r1 vtysh -c "show ip bgp summary" | grep -E "65002|65003" | grep -v "Active\|Connect\|Idle"
+
+- name: Check BFD peers
+  run: |
+    docker exec frr-r1 vtysh -c "show bfd peers" | grep "Status: up"
